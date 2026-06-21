@@ -1,0 +1,12 @@
+signup-automation/
+│
+├── tests/
+│   └── signup.spec.js
+│
+├── test-data/
+│   └── userData.json
+│
+├── README.md
+├── package.json
+├── playwright.config.js
+└── test_report.pdf   (generate later)
