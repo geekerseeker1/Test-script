@@ -1,0 +1,29 @@
+const { test, expect } = require('@playwright/test');
+const userData = require('../test-data/userData.json');
+
+test('Complete Signup Flow Automation', async ({ page }) => {
+  // Step 1: Navigate
+  await page.goto('https://authorized-partner.vercel.app/');
+
+  // Step 2: Click Signup / Get Started
+  await page.click('text=Sign Up');
+
+  // Step 3: Fill Basic Details
+  await page.fill('input[name="name"]', userData.name);
+  await page.fill('input[name="email"]', userData.email);
+  await page.fill('input[name="password"]', userData.password);
+
+  await page.click('button:has-text("Next")');
+
+  // Step 4: Fill Additional Info (adjust selectors if needed)
+  await page.fill('input[name="phone"]', userData.phone);
+  await page.fill('input[name="company"]', userData.company);
+
+  await page.click('button:has-text("Next")');
+
+  // Step 5: Final Submit
+  await page.click('button:has-text("Submit")');
+
+  // Step 6: Validation
+  await expect(page.locator('text=Success')).toBeVisible();
+});
